@@ -2,17 +2,41 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    font-family:"Lucida Console"
 }
 
 button {
+    width: 100px;
+    height: 100px;
+    margin: 2px;
+    padding: 0;
+    font-size: 50px;
+}
 
+.output {
+    background-color: rgb(179, 190, 98);
+    font-size: 100px;
+    text-align: right;
+    padding: 10px;
+    margin: 3px;
+    height: 100px;
+    border-radius: 2px;
+    font-family: "digital-clock-font"
 }
 
 .main {
-    background-color: gray;
+    background-color: rgb(109, 116, 126);
 }
 
 .body {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.body > div {
+    display: flex;
+}
+
+#clear {
+    width: 204px;
 }
