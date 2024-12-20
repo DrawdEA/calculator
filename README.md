@@ -1,2 +1,2 @@
 # calculator
-A calculator made of HTML, CSS, and JavaScript.
+A calculator app made from HTML, CSS, and JavaScript.
