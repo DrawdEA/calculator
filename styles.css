@@ -1,7 +1,7 @@
 body {
     display: flex;
     justify-content: center;
-    align-items: center;
+    background-color: black;
     font-family:"Lucida Console"
 }
 
@@ -11,32 +11,52 @@ button {
     margin: 2px;
     padding: 0;
     font-size: 50px;
+    background-color: rgb(98, 101, 104);
 }
 
 .output {
-    background-color: rgb(179, 190, 98);
+    background-color: rgb(98, 104, 54);
     font-size: 100px;
     text-align: right;
     padding: 10px;
-    margin: 3px;
+    margin: 6px;
     height: 100px;
     border-radius: 2px;
-    font-family: "digital-clock-font"
 }
 
 .main {
-    background-color: rgb(109, 116, 126);
+    margin-top: 20px;
+    background-color: rgb(49, 50, 52);
+    border-radius: 2px;
+    border: 6px solid rgb(33, 33, 34);
 }
 
 .body {
     display: flex;
     flex-direction: column;
+    margin: 3px;
 }
 
 .body > div {
     display: flex;
 }
 
+.brand {
+    font-size: 20px; 
+    color: rgb(21, 21, 21);
+    padding-left: 6px;
+    padding-top: 6px;
+    font-weight: 900;
+}
+
 #clear {
     width: 204px;
+}
+
+#switch-signs {
+    width: 204px;
+}
+
+#output {
+    font-family: "digital-clock-font"
 }

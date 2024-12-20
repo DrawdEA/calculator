@@ -5,16 +5,32 @@ let secondNum = null
 let result = null
 let operand = null
 
+let hasPeriod = false
 
+
+
+// Checks if there is no first number. In this case, make the previous result the first number.
+function initializeFirstNum() {
+    if (!firstNum) { 
+        if (result) { // If there is no first number but there is a result num, automatically make it the first num.
+            firstNum = result
+            result = null
+        } else { // Else, just put 0.
+            firstNum = 0
+        }
+    }
+}
 
 function operate() {
-    let a = parseInt(firstNum)
-    let b = parseInt(secondNum)
+    let a = parseFloat(firstNum)
+    let b = parseFloat(secondNum)
+
+    initializeFirstNum()
 
     if (!operand) { // If there is no operand, just show the first value.
         result = firstNum
     } else { // Else, continue as normal.
-        b = !b ? a : b // If no 2nd value, make the first number be the same as b.
+        b = (b != null) ? b : a // If no 2nd value, make the first number be the same as b.
         switch (operand) {
             case "+":
                 result = a + b
@@ -26,36 +42,44 @@ function operate() {
                 result = a * b
                 break
             case "/":
-                result = a / b
+                if (b != 0) { result = a / b }
                 break
         }
     }
+
+    console.log(result)
     
-    output.textContent = result
+    if (b == 0 && operand == "/") {
+        output.textContent = "ERROR"
+    } else {
+        if (result == Math.floor(result)) {
+            output.textContent = result
+        } else {
+            output.textContent = result.toFixed(2)
+        }
+        
+    }
+    
     firstNum = null
     secondNum = null
     operand = null
+    hasPeriod = false
 }
 
 function insertNum(num) {
     if (!operand) { // No operand yet, insert to first num.
+        if (firstNum && firstNum.toString().length >= 3) { return }
         firstNum = !firstNum ? num : firstNum + num
         output.textContent = firstNum
     } else { // Has operand, insert to second num.
+        if (secondNum && secondNum.toString().length >= 3) { return }
         secondNum = !secondNum ? num : secondNum + num
         output.textContent = secondNum
     }
 }
 
 function insertOperand(o) {
-    if (!firstNum) { 
-        if (result) { // If there is no first number but there is a result num, automatically make it the first num.
-            firstNum = result
-            result = null
-        } else { // Else, just put 0.
-            firstNum = 0
-        }
-    }
+    initializeFirstNum()
 
     // Edge Case: If there is already a second number, evaluate the existing expression before adding a new operand.
     if (secondNum) {
@@ -98,6 +122,26 @@ document.querySelector("#clear").addEventListener("click", () => {
     secondNum = null
     operand = null
     result = null
+    hasPeriod = false
     output.textContent = 0
+})
+
+document.querySelector("#period").addEventListener("click", () => {
+    if (!hasPeriod) {
+        hasPeriod = true
+        insertNum(".")
+    }
+})
+
+document.querySelector("#switch-signs").addEventListener("click", () => {
+    initializeFirstNum()
+
+    if (!operand) {
+        firstNum = -parseFloat(firstNum)
+        output.textContent = firstNum
+    } else {
+        secondNum = -parseFloat(secondNum)
+        output.textContent = secondNum
+    }
 })
 
