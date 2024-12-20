@@ -46,8 +46,6 @@ function operate() {
                 break
         }
     }
-
-    console.log(result)
     
     if (b == 0 && operand == "/") {
         output.textContent = "ERROR"
@@ -55,7 +53,8 @@ function operate() {
         if (result == Math.floor(result)) {
             output.textContent = result
         } else {
-            output.textContent = result.toFixed(2)
+            result = Math.round(result * 100) / 100
+            output.textContent = result
         }
         
     }
